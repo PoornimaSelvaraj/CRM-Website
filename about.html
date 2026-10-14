@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aapurti | About Us</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5dc;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #0808ff;
+            padding: 16px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .brand {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 38px;
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 6px;
+            background: transparent;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 23px;
+            height: 2px;
+            background: white;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .links a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .links a:hover,
+        .links a.active {
+            color: #ffeb80;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 45px auto;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background: linear-gradient(135deg, #08084f, #1010a8);
+            color: white;
+            padding: 75px 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(8, 8, 79, 0.15);
+        }
+
+        .hero .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 7px 17px;
+            border-radius: 30px;
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1.25;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto 28px;
+            font-size: 16px;
+            line-height: 1.9;
+            color: #eeeeff;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1677ff;
+            color: white;
+            padding: 13px 24px;
+            border: none;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #0056c7;
+            transform: translateY(-2px);
+        }
+
+        .section-heading {
+            text-align: center;
+            margin: 55px 0 12px;
+            color: #08084f;
+            font-size: 32px;
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #666;
+            font-size: 15px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9e9d9;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(8, 8, 79, 0.12);
+        }
+
+        .icon {
+            width: 65px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e9edff;
+            border-radius: 14px;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #08084f;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #606060;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .what-we-do {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 35px;
+            margin-top: 35px;
+            padding: 35px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .what-we-do h2 {
+            color: #08084f;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .what-we-do p {
+            color: #606060;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .feature-list li {
+            margin: 12px 0;
+            color: #333;
+        }
+
+        .feature-list li span {
+            color: #16834a;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .work-visual {
+            min-height: 280px;
+            background: linear-gradient(145deg, #e5ebff, #f5f5dc);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .work-visual .big-icon {
+            font-size: 75px;
+            margin-bottom: 12px;
+        }
+
+        .work-visual h3 {
+            color: #08084f;
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .work-visual p {
+            max-width: 320px;
+            margin: 0;
+        }
+
+        .cta {
+            margin-top: 35px;
+            background: #08084f;
+            color: white;
+            text-align: center;
+            padding: 45px 25px;
+            border-radius: 16px;
+        }
+
+        .cta h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            color: #e2e2f5;
+            margin-bottom: 22px;
+        }
+
+        .cta .btn {
+            background: #1677ff;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 45px 5% 20px;
+            background: #f0f0d5;
+            border-top: 1px solid #e2e2c5;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 35px;
+            text-align: center;
+        }
+
+        .footer-column h3 {
+            color: #08084f;
+            font-size: 19px;
+            margin-bottom: 15px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            margin: 9px 0;
+            font-size: 14px;
+        }
+
+        .footer-column a:hover {
+            color: #0808ff;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+            margin: 35px 0 25px;
+        }
+
+        .social-links a {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: #08084f;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #0808ff;
+            transform: translateY(-4px);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #555;
+            font-size: 13px;
+            padding-top: 18px;
+            border-top: 1px solid #dedec6;
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1250px;
+            }
+
+            .hero {
+                padding: 85px 40px;
+            }
+
+            .card {
+                padding: 35px 30px;
+            }
+        }
+
+        @media (max-width: 1100px) and (min-width: 769px) {
+            nav {
+                justify-content: center;
+                padding: 18px 22px;
+                flex-wrap: wrap;
+            }
+
+            .brand {
+                width: 100%;
+                text-align: center;
+            }
+
+            .links {
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+
+            .links a {
+                font-size: 12px;
+            }
+
+            .cards {
+                gap: 18px;
+            }
+
+            .card {
+                padding: 25px 20px;
+            }
+
+            .container {
+                width: 92%;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                padding: 55px 25px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .what-we-do {
+                gap: 22px;
+                padding: 25px;
+            }
+
+            .footer-content {
+                gap: 20px;
+            }
+
+            .section-heading {
+                font-size: 29px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                padding: 15px 16px;
+                gap: 12px;
+            }
+
+            .brand {
+                width: auto;
+                flex: 1;
+                text-align: left;
+                font-size: 17px;
+                white-space: normal;
+            }
+
+            .menu-toggle {
+                display: flex;
+                flex-shrink: 0;
+            }
+
+            .links {
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                gap: 0;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 8px 16px 14px;
+                background: #0808ff;
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .links.show {
+                display: flex;
+            }
+
+            .links a {
+                display: block;
+                width: 100%;
+                padding: 12px 8px;
+                font-size: 13px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            .links a:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 92%;
+                margin: 25px auto;
+            }
+
+            .hero {
+                padding: 40px 18px;
+                border-radius: 13px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero p {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+            .hero .tag {
+                font-size: 12px;
+            }
+
+            .btn {
+                padding: 11px 18px;
+                font-size: 14px;
+            }
+
+            .section-heading {
+                font-size: 26px;
+                margin-top: 38px;
+            }
+
+            .section-description {
+                font-size: 14px;
+                margin-bottom: 22px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 17px;
+                margin-top: 22px;
+            }
+
+            .card {
+                padding: 24px 20px;
+            }
+
+            .card h2 {
+                font-size: 20px;
+            }
+
+            .what-we-do {
+                grid-template-columns: 1fr;
+                padding: 22px;
+                gap: 20px;
+            }
+
+            .what-we-do h2 {
+                font-size: 24px;
+            }
+
+            .work-visual {
+                min-height: 220px;
+            }
+
+            .work-visual .big-icon {
+                font-size: 60px;
+            }
+
+            .cta {
+                padding: 32px 18px;
+            }
+
+            .cta h2 {
+                font-size: 24px;
+            }
+
+            footer {
+                margin-top: 40px;
+                padding: 35px 6% 18px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .social-links {
+                gap: 14px;
+                margin: 28px 0 22px;
+            }
+
+            .social-links a {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .brand {
+                font-size: 15px;
+            }
+
+            .menu-toggle {
+                width: 38px;
+                height: 36px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .section-heading {
+                font-size: 23px;
+            }
+
+            .card {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a class="brand" href="index.html">AAPURTI AGRI BUSINESS</a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="links" id="navLinks">
+            <a href="index.html">DASHBOARD</a>
+            <a href="lead-management.html">LEAD MANAGEMENT</a>
+            <a class="active" href="about.html">ABOUT</a>
+            <a href="team-management.html">TEAM MANAGEMENT</a>
+            <a href="reports.html">REPORT</a>
+            <a href="register.html">REGISTER</a>
+            <a href="login.html">LOG IN</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <span class="tag">🌱 Growing Together</span>
+            <h1>About Aapurti Agri Business</h1>
+            <p>
+                Connecting farmers, dealers and agricultural businesses through
+                organized management, better communication and reliable service.
+                We help teams build stronger relationships and manage everyday
+                operations in one convenient workspace.
+            </p>
+            <a class="btn" href="#mission">Discover Our Mission</a>
+        </section>
+
+        <section id="mission">
+            <h2 class="section-heading">Our Mission & Values</h2>
+            <p class="section-description">
+                Building better connections between agricultural businesses,
+                their teams and the communities they serve.
+            </p>
+
+            <div class="cards">
+                <article class="card">
+                    <div class="icon">🌱</div>
+                    <h2>Our Mission</h2>
+                    <p>
+                        Help agricultural businesses manage customers, leads,
+                        team activities and daily operations efficiently with
+                        a simple and organized CRM workspace.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🎯</div>
+                    <h2>Our Vision</h2>
+                    <p>
+                        Create a connected agricultural ecosystem where farmers,
+                        dealers and business teams can work together and serve
+                        customers better.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🤝</div>
+                    <h2>Our Values</h2>
+                    <p>
+                        We believe in trust, teamwork, transparency, customer
+                        relationships and continuous improvement in every
+                        business interaction.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="what-we-do">
+            <div>
+                <h2>What We Do</h2>
+                <p>
+                    Aapurti Agri Business brings essential CRM activities
+                    together in one place. Teams can organize customer leads,
+                    coordinate tasks, manage team members and review reports
+                    to keep business activities on track.
+                </p>
+
+                <ul class="feature-list">
+                    <li><span>✓</span> Lead and customer management</li>
+                    <li><span>✓</span> Team and task coordination</li>
+                    <li><span>✓</span> Business reports and tracking</li>
+                    <li><span>✓</span> A responsive interface for multiple devices</li>
+                </ul>
+            </div>
+
+            <div class="work-visual">
+                <div class="big-icon">🌾</div>
+                <h3>Better Agriculture. Better Connections.</h3>
+                <p>
+                    Helping teams stay organized and focused on business growth.
+                </p>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Let's Grow Together</h2>
+            <p>
+                Explore our CRM features and make your daily business
+                management simpler and more organized.
+            </p>
+            <a class="btn" href="lead-management.html">Explore Lead Management</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>AAPURTI AGRI BUSINESS</h3>
+                <a href="index.html">Dashboard</a>
+                <a href="lead-management.html">Lead Management</a>
+                <a href="team-management.html">Team Management</a>
+                <a href="task-management.html">Task Management</a>
+                <a href="about.html">About</a>
+                <a href="reports.html">Report</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>SUPPORT</h3>
+                <a href="about.html">About Us</a>
+                <a href="login.html">Log In</a>
+                <a href="register.html">Register</a>
+                <a href="mailto:support@example.com">Contact Support</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>DEVELOPERS</h3>
+                <a href="#mission">Our Mission</a>
+                <a href="#mission">Our Values</a>
+                <a href="reports.html">Business Reports</a>
+                <a href="team-management.html">Our Team</a>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+            <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">p</a>
+            <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">w</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">𝕏</a>
+        </div>
+
+        <div class="copyright">
+            AAPURTI AGRI BUSINESS © 2026 All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const currentPage = window.location.pathname.split("/").pop() || "index.html";
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        document.querySelectorAll(".links a").forEach(link => {
+            const linkPage = link.getAttribute("href");
+
+            if (linkPage === currentPage) {
+                link.classList.add("active");
+            }
+        });
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("show");
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("show");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open navigation menu");
+            });
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove("show");
+                menuToggle.setAttribute("aria-expanded", "false");
+            }
+        });
+    </script>
+</body>
+</html>

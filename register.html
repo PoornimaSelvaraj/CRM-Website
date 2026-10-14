@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aapurti | Register</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5dc;
+            color: #222;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background: #0808ff;
+            padding: 16px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .brand {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            color: white;
+            border: 1px solid #ffffff80;
+            border-radius: 6px;
+            padding: 5px 11px;
+            font-size: 27px;
+            line-height: 1.2;
+            cursor: pointer;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .links a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .links a:hover,
+        .links a.active {
+            color: #ffeb80;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 45px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .register-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 950px;
+            margin: auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px #00000012;
+        }
+
+        .register-info {
+            background: #08084f;
+            color: white;
+            padding: 45px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .register-info h1 {
+            font-size: 32px;
+            line-height: 1.3;
+            margin-bottom: 18px;
+        }
+
+        .register-info p {
+            color: #e1e1f0;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .info-features {
+            margin-top: 28px;
+            display: grid;
+            gap: 18px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            background: #ffffff1c;
+            display: grid;
+            place-items: center;
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .register-panel {
+            padding: 38px 35px;
+        }
+
+        .register-panel h2 {
+            color: #08084f;
+            font-size: 27px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .group {
+            margin-bottom: 18px;
+        }
+
+        .group label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .group input,
+        .group select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d5d5d5;
+            border-radius: 7px;
+            background: white;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .group input:focus,
+        .group select:focus {
+            border-color: #0808ff;
+            box-shadow: 0 0 0 3px #0808ff16;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #0808ff;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #0000b5;
+        }
+
+        .message {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .bottom {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 22px;
+            line-height: 1.7;
+        }
+
+        .bottom a {
+            color: #0808ff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .bottom a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #08084f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin: 12px 0;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ffeb80;
+        }
+
+        @media (min-width: 1400px) {
+            .main-container {
+                max-width: 1300px;
+            }
+
+            .register-layout {
+                max-width: 1000px;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            nav {
+                padding: 16px 20px;
+                gap: 12px;
+            }
+
+            .brand {
+                font-size: 17px;
+            }
+
+            .links {
+                gap: 12px;
+            }
+
+            .links a {
+                font-size: 11px;
+            }
+
+            .main-container {
+                margin: 35px auto;
+            }
+
+            .register-info {
+                padding: 35px 25px;
+            }
+
+            .register-panel {
+                padding: 32px 25px;
+            }
+
+            .register-info h1 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 18px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 0;
+            }
+
+            .brand {
+                white-space: normal;
+                text-align: left;
+                font-size: 18px;
+                max-width: calc(100% - 60px);
+            }
+
+            .menu-toggle {
+                display: block;
+                flex-shrink: 0;
+            }
+
+            .links {
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                gap: 0;
+                width: calc(100% + 36px);
+                margin: 15px -18px -15px;
+                padding: 8px 18px 14px;
+                background: #0808ff;
+                border-top: 1px solid #ffffff40;
+            }
+
+            .links.show {
+                display: flex;
+            }
+
+            .links a {
+                display: block;
+                width: 100%;
+                padding: 13px 5px;
+                font-size: 13px;
+                border-bottom: 1px solid #ffffff25;
+            }
+
+            .links a:last-child {
+                border-bottom: none;
+            }
+
+            .main-container {
+                padding: 0 18px;
+                margin: 30px auto;
+            }
+
+            .register-layout {
+                grid-template-columns: 1fr;
+                max-width: 520px;
+            }
+
+            .register-info {
+                padding: 30px;
+            }
+
+            .register-info h1 {
+                font-size: 27px;
+            }
+
+            .register-info p {
+                font-size: 14px;
+            }
+
+            .info-features {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .register-panel {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 14px 12px;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .menu-toggle {
+                font-size: 25px;
+                padding: 4px 10px;
+            }
+
+            .links {
+                width: calc(100% + 24px);
+                margin: 14px -12px -14px;
+                padding: 8px 12px 12px;
+            }
+
+            .main-container {
+                padding: 0 12px;
+                margin: 22px auto;
+            }
+
+            .register-layout {
+                border-radius: 12px;
+            }
+
+            .register-info {
+                padding: 25px 20px;
+            }
+
+            .register-info h1 {
+                font-size: 24px;
+            }
+
+            .register-info p {
+                font-size: 13px;
+            }
+
+            .info-features {
+                grid-template-columns: 1fr;
+                gap: 13px;
+                margin-top: 22px;
+            }
+
+            .feature {
+                font-size: 13px;
+            }
+
+            .register-panel {
+                padding: 25px 20px;
+            }
+
+            .register-panel h2 {
+                font-size: 23px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+                margin-bottom: 22px;
+            }
+
+            .group {
+                margin-bottom: 16px;
+            }
+
+            .group input,
+            .group select {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 13px;
+                font-size: 15px;
+            }
+
+            .bottom {
+                font-size: 13px;
+            }
+
+            footer {
+                padding: 18px 12px;
+            }
+
+            .social-links {
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+
+            .social-links a {
+                font-size: 12px;
+            }
+        }
+
+        @media print {
+            nav,
+            .register-info,
+            footer,
+            .bottom {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .register-layout {
+                display: block;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a class="brand" href="index.html">AAPURTI AGRI BUSINESS</a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Toggle navigation"
+            aria-controls="navLinks"
+            aria-expanded="false"
+        >☰</button>
+
+        <div class="links" id="navLinks">
+            <a href="index.html">DASHBOARD</a>
+            <a href="lead-management.html">LEAD MANAGEMENT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="team-management.html">TEAM MANAGEMENT</a>
+            <a href="reports.html">REPORT</a>
+            <a class="active" href="register.html">REGISTER</a>
+            <a href="login.html">LOG IN</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+
+        <section class="register-layout">
+
+            <div class="register-info">
+                <h1>Join Aapurti Agri Business</h1>
+
+                <p>
+                    Create your account to manage leads, coordinate your team,
+                    organize agricultural business activities and track your
+                    business performance in one place.
+                </p>
+
+                <div class="info-features">
+                    <div class="feature">
+                        <span class="feature-icon">🌱</span>
+                        <span>Smart Lead Management</span>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">👥</span>
+                        <span>Team Collaboration</span>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <span>Business Reports</span>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">🚜</span>
+                        <span>Agri Business Support</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="register-panel">
+                <h2>Create Account</h2>
+
+                <p class="subtitle">
+                    Register to access your Aapurti CRM dashboard.
+                </p>
+
+                <form id="registerForm">
+
+                    <div class="group">
+                        <label for="fullName">Full Name</label>
+                        <input
+                            id="fullName"
+                            name="fullName"
+                            type="text"
+                            required
+                            minlength="2"
+                            autocomplete="name"
+                            placeholder="Enter your full name"
+                        >
+                    </div>
+
+                    <div class="group">
+                        <label for="email">Email Address</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            required
+                            autocomplete="email"
+                            placeholder="Enter your email address"
+                        >
+                    </div>
+
+                    <div class="group">
+                        <label for="role">Your Role</label>
+                        <select id="role" name="role" required>
+                            <option value="">Select your role</option>
+                            <option value="Administrator">Administrator</option>
+                            <option value="Sales Manager">Sales Manager</option>
+                            <option value="Dealer Executive">Dealer Executive</option>
+                            <option value="Support Executive">Support Executive</option>
+                        </select>
+                    </div>
+
+                    <div class="group">
+                        <label for="password">Password</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                            placeholder="Minimum 6 characters"
+                        >
+                    </div>
+
+                    <div class="group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            type="password"
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                            placeholder="Re-enter your password"
+                        >
+                    </div>
+
+                    <button class="btn" type="submit">
+                        Create Account
+                    </button>
+
+                    <p id="message" class="message" role="status"></p>
+
+                </form>
+
+                <p class="bottom">
+                    Already have an account?
+                    <a href="login.html">Log in</a>
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>AAPURTI AGRI BUSINESS</p>
+
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+
+        <p>&copy; 2026 Aapurti Agri Business. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("show");
+            menuToggle.setAttribute("aria-expanded", isOpen);
+            menuToggle.textContent = isOpen ? "✕" : "☰";
+        });
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("show");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.textContent = "☰";
+            });
+        });
+
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove("show");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.textContent = "☰";
+            }
+        });
+
+        const registerForm = document.getElementById("registerForm");
+        const message = document.getElementById("message");
+
+        registerForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                message.style.color = "#c62828";
+                message.textContent = "Passwords do not match.";
+                return;
+            }
+
+            message.style.color = "#24743b";
+            message.textContent =
+                "Form validated successfully. Connect a backend to create your account.";
+        });
+    </script>
+
+</body>
+</html>
